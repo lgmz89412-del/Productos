@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis productos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Pantalla de acceso -->
+    <section id="auth" class="card auth" hidden>
+      <h1>Mis productos</h1>
+      <p>Inicia sesión o crea una cuenta para administrar tu inventario.</p>
+      <form id="authForm" novalidate>
+        <label for="email">Correo</label>
+        <input id="email" type="email" autocomplete="email" required>
+        <label for="password">Contraseña (mínimo 6 caracteres)</label>
+        <input id="password" type="password" autocomplete="current-password" minlength="6" required>
+        <p class="err" id="authErr" role="alert"></p>
+        <button class="main" type="submit">Iniciar sesión</button>
+        <button type="button" id="signupBtn">Crear cuenta</button>
+      </form>
+    </section>
+
+    <!-- Gestión de productos -->
+    <main id="app" hidden>
+      <header>
+        <h1>Mis productos</h1>
+        <div class="who">
+          <span id="hello"></span>
+          <button type="button" id="logoutBtn">Cerrar sesión</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <form id="f" class="card" novalidate>
+          <h2 id="formTitle">Nuevo producto</h2>
+          <label for="name">Nombre</label>
+          <input id="name" maxlength="80" required autocomplete="off">
+          <label for="category">Categoría</label>
+          <input id="category" maxlength="40" autocomplete="off" placeholder="Ej. Papelería">
+          <div class="row">
+            <div><label for="price">Precio (MXN)</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal" required></div>
+            <div><label for="stock">Existencias</label><input id="stock" type="number" min="0" step="1" inputmode="numeric" required></div>
+          </div>
+          <label for="desc">Descripción</label>
+          <textarea id="desc" maxlength="300"></textarea>
+          <p class="err" id="err" role="alert"></p>
+          <button class="main" type="submit" id="saveBtn">Guardar producto</button>
+          <button type="button" id="cancelBtn" class="ghost" hidden>Cancelar edición</button>
+        </form>
+
+        <section>
+          <div class="card toolbar">
+            <div class="search">
+              <label for="q" class="sr">Buscar</label>
+              <input id="q" type="search" placeholder="Buscar por nombre o categoría" autocomplete="off">
+            </div>
+            <div class="stats" id="stats"></div>
+          </div>
+          <div id="list" class="products"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
